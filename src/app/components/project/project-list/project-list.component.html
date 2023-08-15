@@ -1,0 +1,52 @@
+<div class="main-content">
+  <div>
+    <form class="filter-form">
+      <div class="row">
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="delete-button">Cancel</button>
+        <button class="new-button">Filter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="file-download">
+  <i class="las la-file-pdf" (click)="downloadDataToFile('pdf')"></i>
+  <i class="las la-file-csv" (click)="downloadDataToFile('csv')"></i>
+</div>
+
+<app-data-grid #dataGridComponent *ngIf="_objParentProject" [getObjData]="_objParentProject"
+  (gridCallBack)="gridCallBackFunction($event)">
+</app-data-grid>
+
+<div class="action-buttons">
+  <button class="delete-button" (click)="deleteProjectLists()">Delete</button>
+  <button class="new-button" (click)="gotoAddNewProject()">New</button>
+</div>

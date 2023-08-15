@@ -1,0 +1,19 @@
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <h2><span class="lab la-accusoft"></span>Accusoft</h2>
+  </div>
+  <div class="sidebar-menu">
+    <ul *ngIf="leftNavMenuObj.moduleSubHeaders.length > 0">
+      <li *ngFor="let navObj of leftNavMenuObj.moduleSubHeaders">
+        <ng-container *ngIf="navObj.display">
+          <span class="las la-igloo"></span><span> {{ navObj.moduleSubHead }} </span>
+          <ng-container *ngFor="let navlink of navObj.moduleLinks">
+            <a *ngIf="navlink.display" routerLinkActive="active" [routerLink]="navlink.targetURL">
+              <span> {{ navlink.linkTitle }}</span>
+            </a>
+          </ng-container>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>
