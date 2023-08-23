@@ -1,0 +1,18 @@
+.table-content {
+  padding-top: 50px;
+  margin-top: 25px;
+  width: 95%;
+  height: 500px;
+}
+
+.las {
+  font-family: "Line Awesome Free";
+  font-weight: 900;
+  font-size: 20px;
+  color: #036d9b;
+}
+
+  p-paginator {
+    display: flex;
+    float: right;;
+  }

@@ -1,0 +1,23 @@
+.main-content {
+  border: 2px solid gray;
+  height: 300px;
+  width: 95%;
+}
+
+.filter-form {
+  margin-top: 50px;
+  margin-left: 90px;
+  width: 82%;
+}
+
+.file-download {
+  display: flex;
+  float: right;
+  margin-right: 3.5rem;
+  font-size: 35px;
+  color: #ad112b;
+}
+
+input { 
+  margin: 0.5rem;  
+}

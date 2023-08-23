@@ -1,0 +1,9 @@
+<p [innerHTML]="statement1"></p>
+<p>
+  <span *ngIf="itemToDeleteForDisplay" [innerHTML]="itemToDeleteForDisplay"></span>
+</p>
+
+<div class="action-buttons">
+  <button type="button" class="btn btn-danger" (click)="cancelForm()">No</button>
+  <button type="button" class="btn btn-primary" (click)="onConfirmAction()">Yes</button>
+</div>

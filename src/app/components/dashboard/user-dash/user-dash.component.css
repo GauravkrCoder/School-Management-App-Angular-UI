@@ -1,0 +1,9 @@
+.main-content {
+  padding-left: 285px;
+  width: calc(100% - 285px);
+}
+
+.title {
+  color: grey;
+  align-items: center;
+}

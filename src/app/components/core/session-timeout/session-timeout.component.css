@@ -1,0 +1,14 @@
+.session-timeout {
+    color: #dd2f6e;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 40.5vh auto;
+    font-style: oblique;
+  }
+  
+  a,a:hover,a:active{
+      color: #036d9b;
+  }
+  

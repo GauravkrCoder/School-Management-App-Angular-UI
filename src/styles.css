@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.action-buttons {
+  margin-left: 300px;
+  display: flex;
+  justify-content: end;
+  margin-right: 5%;
+}
+
+.action-buttons button {
+  margin-right: 16px;
+}
+
+.delete-button {
+  border: 2px solid grey;
+  background-color: lightgray;
+  color: black;
+  font-size: medium;
+  border-radius: 5px;
+  width: 100px;
+  height: 35px;
+}
+
+.delete-button:hover {
+  background-color: red;
+}
+
+.new-button {
+  background-color: #2d545e;
+  /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+  width: 100px;
+  font-size: medium;
+  border: 2px solid pink;
+  border-radius: 5px;
+  color: white;
+}

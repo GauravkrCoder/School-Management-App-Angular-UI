@@ -1,0 +1,27 @@
+<div class="main-content">
+  <header>
+    <h2>
+      <label for="">
+        <span class="las la-bars"></span>
+      </label>
+      <app-count-down-timer></app-count-down-timer>
+    </h2>
+    <div class="search-wrapper">
+      <span class="las la-search"></span>
+      <input type="search" placeholder="Search here" />
+    </div>
+
+    <div class="user-wrapper">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <img src="../../../../assets/images/profile-image.png" alt="" width="40px" height="40px">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="javascript:void(0)">Profile</a>
+        <a class="dropdown-item" href="javascript:void(0)">Settings</a>
+        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
+      </div>
+
+    </div>
+  </header> 
+</div>
