@@ -1,6 +1,3 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/1.0/config/configuration-file.html
-
 module.exports = function (config) {
   config.set({
     basePath: '',
@@ -10,35 +7,63 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-spec-reporter'),
     ],
     client: {
-      jasmine: {
-        // you can add configuration options for Jasmine here
-        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
-        // or set a specific seed with `seed: 4321`
-      },
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      jasmine: {},
+      clearContext: false
     },
     jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
+      suppressAll: true
     },
+    browsers:['Chrome'],
+    // browsers: ['ChromeHeadLessNoSandbox'],
+    // customLaunchers: {
+    //   ChromeHeadLessNoSandbox: {
+    //     base: 'ChromiumHeadless',
+    //     flags: [
+    //       '--disable-gpu',
+    //       '--no-sandbox',
+    //       '--disable-web-security',
+    //     ]
+    //   }
+    // },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/supersurvey'),
+      // dir: require('path').join(__dirname, './coverage/supersurvey'),
+      dir: require('path').join(__dirname, './coverage/'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'text-summary' },
+        { type: 'lcov' }
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    specReporter: {
+      maxLogLines: 5,
+      suppressErrorSummary: false,
+      supressFailed: false,
+      supressPassed: false,
+      supressSkipped: false,
+      showSpecTiming: true,
+      failFast: false,
+    },
+    reporters: ['progress', 'kjhtml', 'spec'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: false,
+    browserDisconnectTimeout: 160000,
+    browserDisconnectTolerance: 3,
+    browserNoActivityTimeout: 160000,
+    browserSocketTimeout: 16000,
+    retryLimit: 4,
+    pingTimeout: 60000,
+    jasmineNodeOpts:{
+      showColors: true,
+      includeStackTrace:true,
+      defaultTimeoutInterval:160000
+    }
   });
 };

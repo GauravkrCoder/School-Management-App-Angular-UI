@@ -16,21 +16,41 @@ export class LeftMenuComponent implements OnInit {
     moduleSubHeaders: [
       {
         display: false,
-        moduleSubHead: 'Dashboard',
+        moduleSubHead: 'Student',
         requiredRole: [RolesDefined.viewAll],
         moduleLinks: [
-          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Home', targetURL: '/home' },
-          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'User', targetURL: '/dashboard' }
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Exam', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Result', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Attendance', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Assignment', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Lessons', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Holidays', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Announcement', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.viewAll], linkTitle: 'Time-Table', targetURL: '/project' },
         ]
       },
       {
         display: false,
         moduleSubHead: 'Admin',
+        requiredRole: [RolesDefined.manageAdmin],
+        moduleLinks: [
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Exam', targetURL: '/admin/exam' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Result', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Attendance', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Assignment', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Lessons', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Holidays', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Announcement', targetURL: '/project' },
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Time-Table', targetURL: '/project' },
+
+        ]
+      },
+      {
+        display: false,
+        moduleSubHead: 'Project',
         requiredRole: [RolesDefined.viewAll, RolesDefined.manageAdmin],
         moduleLinks: [
-          { display: false, requiredRole: [RolesDefined.viewAll, RolesDefined.manageAdmin], linkTitle: 'Project', targetURL: '/project' },
-          // { display: false, requiredRole: [RolesDefined.viewAll, RolesDefined.manageAdmin], linkTitle: 'General List', targetURL: '/general-list' },
-          // { display: false, requiredRole: [RolesDefined.viewAll, RolesDefined.manageAdmin], linkTitle: 'Change', targetURL: '/change' }
+          { display: false, requiredRole: [RolesDefined.manageAdmin], linkTitle: 'Project', targetURL: '/project' },
         ]
       },
       {

@@ -1,0 +1,18 @@
+<div class="main-content">
+  <div>
+    <form class="filter-form">
+      <div class="row">
+        <div>
+          <p-dropdown [options]="semesterList" optionLabel="name" optionValue="field"></p-dropdown>
+        </div>
+        <div>
+          <p-dropdown [options]="classList" optionLabel="name" optionValue="field"></p-dropdown>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="delete-button">Cancel</button>
+        <button class="new-button">Filter</button>
+      </div>
+    </form>
+  </div>
+</div>

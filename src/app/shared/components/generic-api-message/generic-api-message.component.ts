@@ -21,6 +21,7 @@ export class GenericApiMessageComponent implements OnInit {
   }
 
   closeDialog() {
+    
     this._dynamicDialogRef.close();
   }
 

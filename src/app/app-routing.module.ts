@@ -37,7 +37,15 @@ const routes: Routes = [
           .then(mod => mod.ProjectModule),
         canActivate: [AuthGuard],
         data: {
-          requiredRole: [RolesDefined.viewAll, RolesDefined.manageAdmin]
+          requiredRole: [RolesDefined.manageAdmin]
+        }
+      },
+      {
+        path: 'admin', loadChildren: () => import('./components/admin/admin-exam/admin-exam.module')
+          .then(mod => mod.AdminExamModule),
+        canActivate: [AuthGuard],
+        data: {
+          requiredRole: [RolesDefined.manageAdmin]
         }
       }
     ]

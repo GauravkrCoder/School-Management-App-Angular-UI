@@ -8,6 +8,10 @@ import { CountDownTimerComponent } from './components/count-down-timer/count-dow
 import { PrimengUiComponentsModule } from '../primeng-ui-components.module';
 import { ConfirmActionComponent } from './components/confirm-action/confirm-action.component';
 import { GenericApiMessageComponent } from './components/generic-api-message/generic-api-message.component';
+import { ExamComponent } from './components/commonComponents/exam/exam.component';
+import { ResultComponent } from './components/commonComponents/result/result.component';
+import { AttendanceComponent } from './components/commonComponents/attendance/attendance.component';
+import { HolidaysComponent } from './components/commonComponents/holidays/holidays.component';
 
 
 
@@ -18,7 +22,11 @@ import { GenericApiMessageComponent } from './components/generic-api-message/gen
     CountDownTimerComponent,
     ConfirmActionComponent,
     GenericApiMessageComponent,
-  
+    ExamComponent,
+    ResultComponent,
+    AttendanceComponent,
+    HolidaysComponent,
+
   ],
   imports: [
     CommonModule,
@@ -28,7 +36,11 @@ import { GenericApiMessageComponent } from './components/generic-api-message/gen
   exports: [
     DataGridComponent,
     PageBreadCrumbComponent,
-    CountDownTimerComponent
+    CountDownTimerComponent,
+    ExamComponent,
+    ResultComponent,
+    AttendanceComponent,
+    HolidaysComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,6 +1,6 @@
-.container-fluid {
-  margin-top: 9rem;
-}
+/* .container-fluid {
+  margin-top: 2rem;
+} */
 
 .card0 {
   box-shadow: 0px 4px 8px 0px #757575;
@@ -142,6 +142,10 @@ a {
 .bg-blue {
   color: #fff;
   background-color: #1a237e;
+}
+
+.is-invalid{
+  border: 1px solid #dc3545;
 }
 
 @media screen and (max-width: 991px) {

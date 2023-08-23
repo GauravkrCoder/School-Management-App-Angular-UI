@@ -11,6 +11,9 @@ export class AppConstants {
     };
 
     public static apiStatusMsgs: any = {
+        login_success: 'Login Successfully.',
+        email_does_not_exists: 'Email Id does not exist.',
+        email_or_password_wrong: 'Email-id or Password incorrect.',
         something_went_wrong: 'Something went wrong !',
         project_added_successfully: 'Project addess successfully.',
         project_deleted_successfully: 'Project deleted successfully.',

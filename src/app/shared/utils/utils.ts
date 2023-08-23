@@ -3,6 +3,7 @@ import { environment } from "src/environments/environment";
 import { AppConstants } from "../statics/app-constants";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { FormGroup } from "@angular/forms";
 
 export default class AppUtils {
 
@@ -24,8 +25,22 @@ export default class AppUtils {
         return str;
     }
 
+    static unsbscribeAll(subs: any): null {
+        for (let _subs in subs) {
+            subs[_subs].unsubscribe();
+        }
+        return null;
+    }
+
+    static removeNullFormControlValues(_form: FormGroup): any {
+        let _newValue = {};
+        for (let ctrl of Object.keys(_form?.value)) {
+            (_form.value[ctrl] === null || _form.value[ctrl] === '') ? null : (_newValue[ctrl] = _form.value[ctrl]);
+        }
+        return _newValue;
+    }
+
     static payloadStringForDeleteAction(_dataObject: any): string {
-        console.log(_dataObject);
         const _data = _dataObject.data;
         const _forPayload = _dataObject['forPayload'];
         let _payloadStringForDelete: string = '';
@@ -82,7 +97,6 @@ export default class AppUtils {
                     doc.addImage(appLogo, 'png', data.settings.margin.left, 22, 70, 23);
                 }
             });
-        // console.log(doc)
         doc.output('dataurlnewwindow', { filename: _title + '.pdf' });
     }
 

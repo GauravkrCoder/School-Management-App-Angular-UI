@@ -25,7 +25,6 @@ export class DataGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.getObjData)
     this.totalRecords = this.getObjData.totalRecords;
   }
 
@@ -41,7 +40,6 @@ export class DataGridComponent implements OnInit {
 
   checkAllRows(event: any) {
     let checked = event.target.checked;
-    console.log(checked)
     const _rowData = this.getObjData.gridData;
     _rowData.forEach(item => this.filterSelectedRows(item, checked, true));
     this.gridCallBack.emit({ sourcePage: this.getObjData.datafor, data: this.selectedRowData, actionType: ActionType.ROWSELECTION })
@@ -105,7 +103,6 @@ export class DataGridComponent implements OnInit {
   }
 
   onPageChange(event) {
-    console.log(event);
     this.gridCallBack.emit({ paginationObj: event, actionType: ActionType.PAGINATION });
   }
 

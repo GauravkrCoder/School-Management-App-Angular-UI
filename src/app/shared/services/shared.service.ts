@@ -17,6 +17,9 @@ export class SharedService {
   public _publishSampleListData: Subject<any> = new Subject<any>();
   private _sampleListData: any;
 
+  public _publishUserSignupLogin: Subject<any> = new Subject<any>();
+  private _userSignupLoggedIn: any;
+
   public invokeMSALLogin = new EventEmitter();
   public subsVar: Subscription;
   public _publishSessionTimeout: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -30,6 +33,8 @@ export class SharedService {
   public _publishRedirectionFromEdit: Subject<boolean> = new Subject<boolean>();
 
   public _clientRoles: Array<string>;
+
+  public searchCriteria: any = null;
 
   constructor(
     private _sharedApiService: SharedApisService,
@@ -70,6 +75,24 @@ export class SharedService {
     this._publishRedirectionFromEdit.next(flag);
   }
 
+  set publishUserSignupLogin(data: any) {
+    this._publishUserSignupLogin.next(data);
+  }
+
+  publishUserSignupLoginOperation(response: any) {
+    if (response) {
+      this.publishUserSignupLogin = response;
+    }
+  }
+
+  userLogin(params: any) {
+    this._sharedApiService.userLogin(params).subscribe((response) => {
+      if (response) {
+        this.publishUserSignupLoginOperation(response);
+      }
+    })
+  }
+
   triggerJWTTokenValidation(params: any) {
     this._sharedApiService.getJWTTokenValidation(params).subscribe((response) => {
       if (response) {
@@ -89,9 +112,7 @@ export class SharedService {
   getSampleDataList(params?: any) {
     this._sharedApiService.getSampleDataList().subscribe((response) => {
       if (response) {
-        // console.log(response);
         this.publishSampleListData = response;
-        // console.log(this.publishSampleListData)
       }
     })
   }
@@ -147,19 +168,21 @@ export class SharedService {
       if (response) {
         console.log('Closing Dialog');
       }
-      if (isEditScreen) {
+      else if (isEditScreen) {
         this.publishRedirectionFromEdit = true;
       }
     })
 
   }
 
-  public triggerRedirection(msg: string = null): void {
-    const _msg = msg ? msg : this._commonMesg.edit_data_not_available;
+  public triggerRedirection(msg: string = null, _userConfirmationNeeded: boolean = false): void {
+    const _msg = msg ? msg : this._commonMesg.edit_data_not_available;   
     const _redirection = msg ? false : true;
+    console.log(_redirection)
     const _options = {
-      config: { styleClass: 'lfg-dialog-small', data: { message: msg } }
+      config: { styleClass: 'lfg-dialog-small', data: { message: _msg, isConfirmationNeeded: _userConfirmationNeeded } }
     }
+    console.log(_options)
     this.showDialog(_options, true, _redirection);
   }
 

@@ -31,4 +31,12 @@ export class SharedApisService {
     return this._httpClient.get(`${this.baseURL}/project/getprojectlist`, { params: key });
   }
 
+  userLogin(key?: any): Observable<any> {
+    return this._httpClient.post(`${this.baseURL}/user/login`, key);
+  }
+
+  userSignUP(key?: any): Observable<any> {
+    return this._httpClient.post(`${this.baseURL}/user/register`, key);
+  }
+
 }

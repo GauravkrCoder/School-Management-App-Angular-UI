@@ -50,6 +50,7 @@ export class ConfirmActionComponent implements OnInit {
   }
 
   onConfirmAction() {
+    console.log(this._dynamicDialogConfig.data)
     this._dynamicDialogRef.close(this._dynamicDialogConfig.data);
   }
 

@@ -8,6 +8,8 @@ import { DatePipe } from '@angular/common';
 import { DataGridComponent } from 'src/app/shared/components/data-grid/data-grid.component';
 import { RequestProjectListModel } from 'src/app/models/projectList.model';
 import AppUtils from 'src/app/shared/utils/utils';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-project-list',
@@ -19,27 +21,27 @@ export class ProjectListComponent implements OnInit {
   public _objParentProject: DataGridInputModel;
   public componentSubscription: any = {};
   @ViewChild('dataGridComponent') dataGridComponent: DataGridComponent;
-
+  public searchProjectForm: FormGroup;
   public isFilterSet: boolean = false;
 
   constructor(
     private _sharedService: SharedService,
     private _projectService: ProjectService,
     private _router: Router,
-    private _datepipe: DatePipe
+    private _datepipe: DatePipe,
+    private _fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.initSearchProjectForm();
     this.initFetchProjectDataList();
     this._objParentProject = this.setDataGridInputObj(true);
     this.componentSubscription.subscription0 = this._sharedService.publishProjectList.subscribe((response) => {
       if (response) {
-        console.log(response.data);
         const _gridData = this.remapProjectDataList(response.data);
         this._objParentProject.gridData = _gridData;
         this._objParentProject.totalRecords = response.total;
         this._objParentProject.offset = response.offset;
-        // console.log(this.objParentUser);
       }
     });
 
@@ -52,6 +54,20 @@ export class ProjectListComponent implements OnInit {
 
   }
 
+  initSearchProjectForm() {
+    this.searchProjectForm = this._fb.group({
+      project_title: [''],
+      project_client: [''],
+      project_assigned_manager: [''],
+      sprint_planned: [''],
+      project_type: [''],
+      project_status: [''],
+      // project_cost: [''],
+      // project_start_date: [''],
+      // project_completion_date: [''],
+    })
+  }
+
   setDataGridInputObj(zeroRecords: boolean): DataGridInputModel {
     const _dataGridInputModel: DataGridInputModel = new DataGridInputModel();
     _dataGridInputModel.datafor = Datafor.PROJECT;
@@ -59,10 +75,7 @@ export class ProjectListComponent implements OnInit {
       { field: 'project_title', header: 'TITLE' },
       { field: 'project_client', header: 'CLIENT' },
       { field: 'project_assigned_manager', header: 'PROJECT MANAGER' },
-      // { field: 'project_assigned_developers', header: 'TEAM MEMBERS' },
       { field: 'sprint_planned', header: 'SPRINT PLANNED' },
-      // { field: 'project_start_date', header: 'PROJECT STARTED' },
-      // { field: 'project_completion_date', header: 'DELIVERY DATE' },
       { field: 'project_cost', header: 'AMOUNT' },
       { field: 'project_type', header: 'TYPE' },
       { field: 'project_status', header: 'STATUS' }
@@ -120,8 +133,8 @@ export class ProjectListComponent implements OnInit {
   }
 
   gridCallBackFunction(eventData: any) {
-    console.log(eventData);
     if (eventData.actionType === ActionType.EDIT) {
+      this._projectService.getEditInfoDataForProject(eventData);
       this._router.navigate(['/project/edit']);
     }
     else if (eventData.actionType === ActionType.DELETE) {
@@ -161,6 +174,40 @@ export class ProjectListComponent implements OnInit {
     } else {
       AppUtils.downloadDataTofile('pdf', this._objParentProject);
     }
+  }
+
+  clearAllFilterData() {
+    this.searchProjectForm.reset();
+    this.initFetchProjectDataList();
+  }
+
+  searchProjectDetailsForm(filterData?: any, _perpage: number = RecordsPerPageDataGrid.PERPAGE) {
+    const _form = this.searchProjectForm;
+    if (_form?.invalid) {
+      return
+    }
+    let _requestProjectListModel = this.getRequestDataModel();
+    const _formData = AppUtils.removeNullFormControlValues(_form);
+    _requestProjectListModel = Object.assign(_requestProjectListModel, _formData);
+    console.log(_requestProjectListModel);
+
+    if (this.isFilterSet && filterData != undefined) {
+      _requestProjectListModel.offset = filterData?.paginationObj?.first;
+      _requestProjectListModel.perpage = filterData?.paginationObj?.rows;
+    }
+    else {
+      if (_perpage !== -1) {
+        this._objParentProject = this.setDataGridInputObj(false);
+        this.isFilterSet = true;
+        this._sharedService.searchCriteria = _requestProjectListModel;
+      } else {
+        this.isFilterSet = false;
+        this._sharedService.searchCriteria = null;
+      }
+      _requestProjectListModel.perpage = _perpage;
+      this._projectService.searchProjectListData(_requestProjectListModel);
+    }
+
   }
 
 }

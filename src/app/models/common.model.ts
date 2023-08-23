@@ -39,3 +39,9 @@ export enum ActionType {
     CANCEL = 'cancel',
     ROWSELECTION = 'row-selection'
 }
+
+export enum FormType {
+    FILTER = 'filter',
+    NEW = 'new',
+    EDIT = 'edit'
+}

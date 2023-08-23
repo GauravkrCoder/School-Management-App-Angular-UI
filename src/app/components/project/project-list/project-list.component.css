@@ -17,3 +17,7 @@
   font-size: 35px;
   color: #ad112b;
 }
+
+input { 
+  margin: 0.5rem;  
+}

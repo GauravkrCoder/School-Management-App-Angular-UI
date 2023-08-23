@@ -1,0 +1,43 @@
+<div class="add-form-section">
+  <form class="add-form" [formGroup]="projectForm">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <input type="text" pInputText placeholder="Project Title" formControlName="project_title" />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="text" pInputText placeholder="Client" formControlName="project_client" />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="text" pInputText placeholder="Project Manager" formControlName="project_assigned_manager" />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="text" pInputText placeholder="Sprint Planned" formControlName="sprint_planned" />
+      </div>
+      <div class="form-group col-md-4">
+        <input type="text" pInputText placeholder="Project Cost" formControlName="project_cost" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <p-dropdown [options]="projectType" optionLabel="name" optionValue="project_type" placeholder="Project Types"
+          [autoDisplayFirst]="false" [showClear]="true" formControlName="project_type"></p-dropdown>
+      </div>
+      <div class="form-group col-md-3">
+        <p-dropdown [options]="projectStatus" optionLabel="projectStatus" optionValue="project_status"
+          [autoDisplayFirst]="true" [showClear]="false" placeholder="Project Status" formControlName="project_status">
+        </p-dropdown>
+      </div>
+      <div class="form-group col-md-3">
+        <p-calendar placeholder="Start Date" formControlName="project_start_date"></p-calendar>
+      </div>
+      <div class="form-group col-md-3">
+        <p-calendar placeholder="Completion Date" formControlName="project_completion_date"></p-calendar>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <p-chips placeholder="Team Members" formControlName="project_assigned_developers"></p-chips>
+      </div>
+    </div>
+  </form> 
+</div>

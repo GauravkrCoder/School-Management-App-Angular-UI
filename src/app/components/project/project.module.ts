@@ -9,6 +9,7 @@ import { DeleteProjectComponent } from './delete-project/delete-project.componen
 import { PrimengUiComponentsModule } from 'src/app/primeng-ui-components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectCommonFormComponent } from './project-common-form/project-common-form.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProjectListComponent,
     AddProjectComponent,
     EditProjectComponent,
-    DeleteProjectComponent
+    DeleteProjectComponent,
+    ProjectCommonFormComponent
   ],
   imports: [
     CommonModule,

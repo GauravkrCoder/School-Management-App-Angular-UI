@@ -22,9 +22,9 @@ export class UserDashComponent implements OnInit {
     this.objParentUser = this.setDataGridInputObj(true)
     this._sharedService._publishSampleListData.subscribe((result) => {
       if (result) {
-        // console.log(result.data);       
+             
         this.objParentUser.gridData = result.data;
-        // console.log(this.objParentUser);
+        
       }
     })
 

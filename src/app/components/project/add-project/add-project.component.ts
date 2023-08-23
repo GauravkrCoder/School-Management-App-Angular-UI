@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProjectService } from '../services/project.service';
 import { Router } from '@angular/router';
+import { RequestProjectListModel } from 'src/app/models/projectList.model';
+import AppUtils from 'src/app/shared/utils/utils';
 
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
   styleUrls: ['./add-project.component.css']
 })
-export class AddProjectComponent implements OnInit {
+export class AddProjectComponent implements OnInit, OnDestroy {
 
   public addProjectForm: FormGroup;
   public formSubmitted: boolean = false;
@@ -56,13 +58,21 @@ export class AddProjectComponent implements OnInit {
       project_start_date: [''],
       project_completion_date: [''],
       project_assigned_developers: [''],
-      currency:['USD']
+      currency: ['USD']
     })
   }
 
   addNewProject() {
-    console.log(this.addProjectForm.value)
-    this._projectService.addNewProjectDetails(this.addProjectForm.value);
+    let _requestProjectListModel = new RequestProjectListModel();
+    const _form = this.addProjectForm;
+    _requestProjectListModel = Object.assign(_requestProjectListModel, _form.value);
+    console.log(_requestProjectListModel)
+    console.log(_form.value)
+    this._projectService.addNewProjectDetails(_requestProjectListModel);
+  }
+
+  ngOnDestroy(): void {
+    this.componentSubscriptions = AppUtils.unsbscribeAll(this.componentSubscriptions);
   }
 
 }
